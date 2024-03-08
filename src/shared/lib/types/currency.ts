@@ -1,0 +1,46 @@
+export enum Currency {
+  Dollar = 'USD',
+  Euro = 'EUR',
+  Ruble = 'RUB',
+  Tenge = 'KZT',
+  ArmenianDram = 'AMD',
+  AustralianDollar = 'AUD',
+  AzerbaijaniManat = 'AZN',
+  Baht = 'THB',
+  BelarusianRuble = 'BYN',
+  BrazilianReal = 'BRL',
+  CanadianDollar = 'CAD',
+  Dirham = 'AED',
+  GeorgianLari = 'GEL',
+  HongKongDollar = 'HKD',
+  Hryvnia = 'UAH',
+  IndianRupee = 'INR',
+  IndonesianRupiah = 'IDR',
+  IranianRial = 'IRR',
+  IsraeliShekel = 'ILS',
+  KyrgyzstanSom = 'KGS',
+  MalaysianRinggit = 'MYR',
+  MexicanPeso = 'MXN',
+  MongolianTugrik = 'MNT',
+  NewTurkmenManat = 'TMT',
+  Pound = 'GBP',
+  SaudiRiyal = 'SAR',
+  SerbianDinar = 'RSD',
+  SingaporeDollar = 'SGD',
+  SouthAfricanRand = 'ZAR',
+  SriLankanRupee = 'LKR',
+  SwissFranc = 'CHF',
+  TajikistaniSomoni = 'TJS',
+  TurkishLira = 'TRY',
+  UzbekSum = 'UZS',
+  VietnameseDong = 'VND',
+  Won = 'KRW',
+  Yen = 'JPY',
+  YuanRenminbi = 'CNY',
+}
+
+type StringValues<T> = {
+  [K in keyof T]: T[K] extends string ? T[K] : never;
+}[keyof T];
+
+export type CurrencyType = `${StringValues<typeof Currency>}`;
