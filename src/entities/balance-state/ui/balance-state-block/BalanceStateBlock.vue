@@ -9,6 +9,7 @@
         :value="value?.amount || 0"
         :class="[moneyColor, 'font-bold']"
         type="heading"
+        level="5"
         :currency="value?.currency"
       />
     </div>

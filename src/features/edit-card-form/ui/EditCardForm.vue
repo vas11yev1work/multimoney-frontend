@@ -1,7 +1,7 @@
 <template>
   <form class="flex flex-col gap-3" @submit="onSubmit">
     <UiInput label="Название" required name="name" />
-    <UiInput label="Последние 4 цифры" name="label" hint="Поможет вам визуально отличить счета" type="number" />
+    <UiInput label="Последние 4 цифры" name="label" hint="Поможет вам визуально отличить счета" />
     <UiSelect label="Валюта" required :options="currencies" name="currency" />
     <UiInput
       label="Начальный баланс"
@@ -11,7 +11,7 @@
       required
     />
     <CardColorSelect name="color" />
-    <UiButton size="large" class="mt-3" type="submit">Сохранить</UiButton>
+    <UiButton size="large" class="sticky bottom-4 mt-2" type="submit">Сохранить</UiButton>
   </form>
 </template>
 
@@ -40,7 +40,7 @@ const { handleSubmit } = useForm({
   validationSchema: toTypedSchema(validationSchema),
   initialValues: {
     name: '',
-    label: undefined,
+    label: '',
     initialBalance: undefined,
     color: CardColor.Slate,
     currency: undefined,

@@ -21,7 +21,7 @@ const footerItems = [
   },
   {
     label: 'История',
-    icon: 'faClockRotateLeft',
+    icon: 'faClock',
     route: { name: 'HomePage' },
   },
   {

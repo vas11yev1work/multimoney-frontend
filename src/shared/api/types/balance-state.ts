@@ -1,7 +1,7 @@
-import { AmountModel } from '@/shared/lib';
+import { AmountModel, Currency } from '@/shared/lib';
 
 export interface BalanceState {
-  total: AmountModel;
-  incomes: AmountModel;
-  expenses: AmountModel;
+  total: Partial<Record<Currency, AmountModel>>;
+  incomes: Partial<Record<Currency, AmountModel>>;
+  expenses: Partial<Record<Currency, AmountModel>>;
 }

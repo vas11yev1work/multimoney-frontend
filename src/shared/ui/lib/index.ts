@@ -7,3 +7,4 @@ export * from './ui-input';
 export * from './ui-select';
 export * from './ui-button';
 export * from './ui-spinner';
+export * from './ui-tabs';
