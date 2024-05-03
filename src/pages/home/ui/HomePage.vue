@@ -21,11 +21,11 @@
       </div>
       <div class="grid grid-cols-2 gap-2">
         <AddCategory />
-        <!-- TODO: AddTransaction -->
+        <AddTransaction />
       </div>
       <div class="mt-4 rounded-xl bg-white p-4">
         <UiTypo type="heading" class="mb-2 font-semibold">Расходы по категориям</UiTypo>
-        <ExpensesState :expenses="expenses.data" />
+        <ExpensesByCategoryState :categories="categoriesList" />
       </div>
     </UiContainer>
   </div>
@@ -35,13 +35,14 @@
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import { AddCategory } from '@/widgets/add-category';
+import { AddTransaction } from '@/widgets/add-transaction';
 import { BalanceStateBlocks } from '@/widgets/balance-state-blocks';
 import { CardsList } from '@/widgets/cards-list';
-import { ExpensesState } from '@/widgets/expenses-state';
+import { ExpensesByCategoryState } from '@/widgets/expenses-state';
 import { useAppSettingsModel } from '@/entities/app-settings';
 import { TotalBalance, useBalanceStateModel } from '@/entities/balance-state';
 import { useCardModel } from '@/entities/card';
-import { useExpenseModel } from '@/entities/expense';
+import { useExpenseCategoryModel } from '@/entities/expense-category';
 import { UiContainer, UiTypo } from '@/shared/ui';
 
 const balanceStateModel = useBalanceStateModel();
@@ -50,11 +51,11 @@ const { balanceState } = storeToRefs(balanceStateModel);
 const cardModel = useCardModel();
 const { cards } = storeToRefs(cardModel);
 
-const expenseModel = useExpenseModel();
-const { expenses } = storeToRefs(expenseModel);
-
 const appSettingsModel = useAppSettingsModel();
 const { selectedCurrency } = storeToRefs(appSettingsModel);
+
+const expenseCategoryModel = useExpenseCategoryModel();
+const { categoriesList } = storeToRefs(expenseCategoryModel);
 
 const currentBalance = computed(() => {
   if (!balanceState.value.data?.total) return 0;

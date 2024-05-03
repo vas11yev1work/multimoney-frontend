@@ -1,1 +1,1 @@
-export { default as ExpensesState } from './ExpensesState.vue';
+export { default as ExpensesByCategoryState } from './ExpensesByCategoryState.vue';

@@ -8,8 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { AddNewCard } from '@/features/add-new-card';
-import { EditCardForm } from '@/features/edit-card-form';
+import { AddNewCard, EditCardForm } from '@/features/add-new-card';
 import { CardItem } from '@/entities/card';
 import { Card } from '@/shared/api';
 

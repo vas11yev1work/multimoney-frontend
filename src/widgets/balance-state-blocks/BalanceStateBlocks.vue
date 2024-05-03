@@ -26,7 +26,7 @@ const props = withDefaults(
 );
 
 const incomeAmount = computed<AmountModel | undefined>(() => {
-  if (!props.currency) return undefined;
+  if (!props.currency) return;
   return {
     amount: props.incomes,
     currency: props.currency,
@@ -34,7 +34,7 @@ const incomeAmount = computed<AmountModel | undefined>(() => {
 });
 
 const expenseAmount = computed<AmountModel | undefined>(() => {
-  if (!props.currency) return undefined;
+  if (!props.currency) return;
   return {
     amount: props.expenses,
     currency: props.currency,
