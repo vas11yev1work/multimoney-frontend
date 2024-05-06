@@ -5,10 +5,9 @@
         <UiIcon :icon-name="category?.icon" size="lg" class="text-blue-500" />
       </div>
       <div>
-        <UiTypo level="5" class="font-medium text-slate-400">{{ category?.name || '' }}</UiTypo>
+        <UiTypo level="5" class="font-medium text-slate-400">{{ category?.name ?? '' }}</UiTypo>
         <div class="flex items-end">
-          <!-- TODO: подставлять реальные значения -->
-          <UiMoney :value="0" currency="EUR" class="font-semibold" />
+          <UiMoney :value="amount?.amount ?? 0" :currency="amount?.currency ?? 'EUR'" class="font-semibold" />
           <div v-if="category?.limit" class="ml-1 flex">
             <UiTypo level="6" class="mr-1 font-semibold leading-6">/</UiTypo>
             <UiMoney
@@ -33,10 +32,12 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { ExpenseCategory } from '@/shared/api';
+import { AmountModel } from '@/shared/lib';
 import { UiIcon, UiMoney, UiTypo } from '@/shared/ui';
 
 const props = defineProps<{
   category?: ExpenseCategory;
+  amount?: AmountModel;
 }>();
 
 const limitPercent = computed(() => {
@@ -44,8 +45,7 @@ const limitPercent = computed(() => {
     return 0;
   }
 
-  // TODO: подставлять реальные значения
-  return Math.floor((0 / props.category.limit.amount) * 100);
+  return Math.floor(((props.amount?.amount ?? 0) / props.category.limit.amount) * 100);
 });
 
 const scaleParam = computed(() => {

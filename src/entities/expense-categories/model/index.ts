@@ -5,8 +5,8 @@ interface ExpenseCategoryModel {
   categories: SharedData<ExpenseCategory[]>;
 }
 
-export const useExpenseCategoryModel = defineStore({
-  id: 'expense-category',
+export const useExpenseCategoriesModel = defineStore({
+  id: 'expense-categories',
   state: (): ExpenseCategoryModel => ({
     categories: getDefaultSharedState<ExpenseCategory[]>({
       data: [

@@ -25,7 +25,7 @@
       </div>
       <div class="mt-4 rounded-xl bg-white p-4">
         <UiTypo type="heading" class="mb-2 font-semibold">Расходы по категориям</UiTypo>
-        <ExpensesByCategoryState :categories="categoriesList" />
+        <ExpensesByCategoryState :categories="categoriesList" :categories-amount="expensesAmountByCategoryId" />
       </div>
     </UiContainer>
   </div>
@@ -42,7 +42,8 @@ import { ExpensesByCategoryState } from '@/widgets/expenses-state';
 import { useAppSettingsModel } from '@/entities/app-settings';
 import { TotalBalance, useBalanceStateModel } from '@/entities/balance-state';
 import { useCardModel } from '@/entities/card';
-import { useExpenseCategoryModel } from '@/entities/expense-category';
+import { useExpenseCategoriesModel } from '@/entities/expense-categories';
+import { useExpensesModel } from '@/entities/expenses/model';
 import { UiContainer, UiTypo } from '@/shared/ui';
 
 const balanceStateModel = useBalanceStateModel();
@@ -54,8 +55,11 @@ const { cards } = storeToRefs(cardModel);
 const appSettingsModel = useAppSettingsModel();
 const { selectedCurrency } = storeToRefs(appSettingsModel);
 
-const expenseCategoryModel = useExpenseCategoryModel();
+const expenseCategoryModel = useExpenseCategoriesModel();
 const { categoriesList } = storeToRefs(expenseCategoryModel);
+
+const expensesModel = useExpensesModel();
+const { expensesAmountByCategoryId } = storeToRefs(expensesModel);
 
 const currentBalance = computed(() => {
   if (!balanceState.value.data?.total) return 0;
