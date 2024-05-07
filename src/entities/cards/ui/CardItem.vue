@@ -8,11 +8,11 @@
         <UiTypo level="6" class="text-nowrap font-semibold">{{ card?.label || '' }}</UiTypo>
       </div>
       <div>
-        <UiMoney :currency="card?.balance.currency" :value="card?.balance.amount" class="font-bold" />
+        <UiMoney :currency="card?.balance.currency" :value="card?.balance.amount ?? 0" class="font-bold" />
         <UiMoney
           v-if="card?.balance.currency !== card?.currencyBalance.currency"
           :currency="card?.currencyBalance.currency"
-          :value="card?.currencyBalance.amount"
+          :value="card?.currencyBalance.amount ?? 0"
           level="6"
           class="font-semibold opacity-80"
         />

@@ -43,7 +43,7 @@ import { useAppSettingsModel } from '@/entities/app-settings';
 import { TotalBalance, useBalanceStateModel } from '@/entities/balance-state';
 import { useCardsModel } from '@/entities/cards';
 import { useExpenseCategoriesModel } from '@/entities/expense-categories';
-import { useExpensesModel } from '@/entities/expenses/model';
+import { useExpensesModel } from '@/entities/expenses';
 import { UiContainer, UiTypo } from '@/shared/ui';
 
 const balanceStateModel = useBalanceStateModel();

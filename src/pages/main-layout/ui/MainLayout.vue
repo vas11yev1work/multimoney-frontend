@@ -7,33 +7,33 @@
 
 <script setup lang="ts">
 import { onBeforeMount } from 'vue';
-import { UserFooter } from '@/widgets/user-footer';
+import { FooterItem, UserFooter } from '@/widgets/user-footer';
 import { useAppSettingsModel } from '@/entities/app-settings';
 import { useBalanceStateModel } from '@/entities/balance-state';
 import { useCardsModel } from '@/entities/cards';
 import { useExpenseCategoriesModel } from '@/entities/expense-categories';
-import { useExpensesModel } from '@/entities/expenses/model';
+import { useExpensesModel } from '@/entities/expenses';
 
-const footerItems = [
+const footerItems: FooterItem[] = [
   {
     label: 'Главная',
     icon: 'faHome',
-    route: { name: 'HomePage' },
+    route: 'HomePage',
   },
   {
     label: 'Статистика',
     icon: 'faChartSimple',
-    route: { name: 'HomePage' },
+    route: 'HomePage',
   },
   {
     label: 'История',
     icon: 'faClock',
-    route: { name: 'HomePage' },
+    route: 'HomePage',
   },
   {
     label: 'Настройки',
     icon: 'faGear',
-    route: { name: 'HomePage' },
+    route: 'HomePage',
   },
 ];
 

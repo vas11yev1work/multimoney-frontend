@@ -14,7 +14,7 @@ import { Card } from '@/shared/api';
 
 withDefaults(
   defineProps<{
-    cards?: Card[];
+    cards?: Card[] | null;
   }>(),
   {
     cards: () => [],

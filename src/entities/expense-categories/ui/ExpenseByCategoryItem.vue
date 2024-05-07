@@ -2,7 +2,7 @@
   <div class="flex w-full items-center justify-between">
     <div class="flex items-center">
       <div class="mr-3 flex h-10 w-10 min-w-10 items-center justify-center rounded-xl bg-gray-100">
-        <UiIcon :icon-name="category?.icon" size="lg" class="text-blue-500" />
+        <UiIcon :icon-name="category?.icon ?? 'faHome'" size="lg" class="text-blue-500" />
       </div>
       <div>
         <UiTypo level="5" class="font-medium text-slate-400">{{ category?.name ?? '' }}</UiTypo>
