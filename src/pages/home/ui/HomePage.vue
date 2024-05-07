@@ -41,7 +41,7 @@ import { CardsList } from '@/widgets/cards-list';
 import { ExpensesByCategoryState } from '@/widgets/expenses-state';
 import { useAppSettingsModel } from '@/entities/app-settings';
 import { TotalBalance, useBalanceStateModel } from '@/entities/balance-state';
-import { useCardModel } from '@/entities/card';
+import { useCardsModel } from '@/entities/cards';
 import { useExpenseCategoriesModel } from '@/entities/expense-categories';
 import { useExpensesModel } from '@/entities/expenses/model';
 import { UiContainer, UiTypo } from '@/shared/ui';
@@ -49,7 +49,7 @@ import { UiContainer, UiTypo } from '@/shared/ui';
 const balanceStateModel = useBalanceStateModel();
 const { balanceState } = storeToRefs(balanceStateModel);
 
-const cardModel = useCardModel();
+const cardModel = useCardsModel();
 const { cards } = storeToRefs(cardModel);
 
 const appSettingsModel = useAppSettingsModel();

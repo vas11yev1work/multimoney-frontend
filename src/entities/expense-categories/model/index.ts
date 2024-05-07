@@ -1,43 +1,29 @@
 import { defineStore } from 'pinia';
-import { ExpenseCategory, getDefaultSharedState, SharedData } from '@/shared/api';
+import { ExpenseCategoriesApi, ExpenseCategory, getDefaultSharedState, loadSharedData, SharedData } from '@/shared/api';
 
-interface ExpenseCategoryModel {
+interface ExpenseCategoriesModel {
   categories: SharedData<ExpenseCategory[]>;
 }
 
 export const useExpenseCategoriesModel = defineStore({
   id: 'expense-categories',
-  state: (): ExpenseCategoryModel => ({
-    categories: getDefaultSharedState<ExpenseCategory[]>({
-      data: [
-        {
-          id: '1',
-          name: 'Продукты',
-          icon: 'faUtensils',
-        },
-        {
-          id: '2',
-          name: 'Английский язык',
-          icon: 'faGlobe',
-        },
-        {
-          id: '3',
-          name: 'Такси',
-          icon: 'faTaxi',
-          limit: {
-            amount: 200,
-            currency: 'EUR',
-          },
-        },
-      ],
-    }),
+  state: (): ExpenseCategoriesModel => ({
+    categories: getDefaultSharedState(),
   }),
+  actions: {
+    async loadCategories() {
+      await loadSharedData({
+        promise: () => ExpenseCategoriesApi.getCategories(),
+        currentData: this.categories,
+      });
+    },
+  },
   getters: {
-    getCategoryById: (state: ExpenseCategoryModel) => (id: string) => {
+    getCategoryById: (state: ExpenseCategoriesModel) => (id: string) => {
       if (!state.categories.data) return null;
       return state.categories.data.find(category => category.id === id) ?? null;
     },
-    categoriesList: (state: ExpenseCategoryModel): ExpenseCategory[] => {
+    categoriesList: (state: ExpenseCategoriesModel): ExpenseCategory[] => {
       return state.categories.data ?? [];
     },
   },

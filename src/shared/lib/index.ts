@@ -2,3 +2,5 @@ export * from './get-currency-symbol.ts';
 export * from './get-card-color.ts';
 export * from './get-currency-name.ts';
 export * from './types';
+export * from './capitalize.ts';
+export * from './divide-randomly.ts';

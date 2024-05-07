@@ -1,35 +1,40 @@
 import { defineStore } from 'pinia';
-import { getDefaultSharedState, SharedData } from '@/shared/api';
+import { AppSettings, AppSettingsApi, getDefaultSharedState, loadSharedData, SharedData } from '@/shared/api';
 import { Currency, CurrencyType } from '@/shared/lib';
 
 interface AppSettingsModel {
-  userCurrencies: SharedData<CurrencyType[]>;
   selectedCurrency: Currency | CurrencyType;
-  mainCurrency: SharedData<Currency | CurrencyType>;
+  appSettings: SharedData<AppSettings>;
 }
 
 export const useAppSettingsModel = defineStore({
   id: 'app-settings',
   state: (): AppSettingsModel => ({
-    userCurrencies: getDefaultSharedState({
-      data: ['EUR', 'USD', 'RUB', 'KZT'],
-    }),
     selectedCurrency: Currency.Euro,
-    mainCurrency: getDefaultSharedState({
-      data: Currency.Euro,
-    }),
+    appSettings: getDefaultSharedState(),
   }),
   actions: {
     setSelectedCurrency(currency: Currency | CurrencyType) {
       this.selectedCurrency = currency;
     },
     changeSelectedCurrency() {
-      if (!this.userCurrencies.data) {
+      if (!this.appSettings.data) {
         return;
       }
-      const index = this.userCurrencies.data?.indexOf(this.selectedCurrency);
-      const nextIndex = (index + 1) % (this.userCurrencies.data?.length ?? 0);
-      this.selectedCurrency = this.userCurrencies.data[nextIndex];
+      const index = this.appSettings.data.userCurrencies?.indexOf(this.selectedCurrency);
+      const nextIndex = (index + 1) % (this.appSettings.data.userCurrencies?.length ?? 0);
+      this.selectedCurrency = this.appSettings.data.userCurrencies[nextIndex];
+    },
+    async loadAppSettings() {
+      await loadSharedData({
+        promise: () => AppSettingsApi.getAppSettings(),
+        currentData: this.appSettings,
+      });
+    },
+  },
+  getters: {
+    mainCurrency: (state: AppSettingsModel) => {
+      return state.appSettings.data?.mainCurrency;
     },
   },
 });

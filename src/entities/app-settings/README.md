@@ -4,9 +4,7 @@
 
 ```typescript
 interface AppSettingsModel {
-  userCurrencies: SharedData<CurrencyType[]>;
   selectedCurrency: Currency | CurrencyType;
-  mainCurrency: SharedData<Currency | CurrencyType>;
 }
 ```
 

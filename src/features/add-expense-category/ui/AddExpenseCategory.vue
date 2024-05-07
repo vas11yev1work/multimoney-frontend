@@ -5,7 +5,7 @@
       label="Лимит"
       name="limit"
       type="number"
-      :hint="`Необходимо указать лимит в главной выбранной валюте (${mainCurrency.data})`"
+      :hint="`Необходимо указать лимит в главной выбранной валюте (${mainCurrency})`"
     />
     <ExpenseIconSelect name="icon" />
     <UiButton type="submit" size="large" class="sticky bottom-4 mt-2">Добавить</UiButton>

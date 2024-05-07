@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { AddNewCard, EditCardForm } from '@/features/add-new-card';
-import { CardItem } from '@/entities/card';
+import { CardItem } from '@/entities/cards';
 import { Card } from '@/shared/api';
 
 withDefaults(
