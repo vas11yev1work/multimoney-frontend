@@ -23,8 +23,5 @@ export const useExpenseCategoriesModel = defineStore({
       if (!state.categories.data) return null;
       return state.categories.data.find(category => category.id === id) ?? null;
     },
-    categoriesList: (state: ExpenseCategoriesModel): ExpenseCategory[] => {
-      return state.categories.data ?? [];
-    },
   },
 });

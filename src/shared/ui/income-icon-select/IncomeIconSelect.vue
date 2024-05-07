@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { useField } from 'vee-validate';
 import { UiIcon, UiTypo } from '@/shared/ui';
-import { Icons } from './icons.ts';
+import { Icons } from './icons';
 
 const props = defineProps<{
   name: string;

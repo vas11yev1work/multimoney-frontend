@@ -1,18 +1,23 @@
 <template>
-  <main class="pb-20">
-    <RouterView />
-  </main>
+  <UiSuspense :data="appSettingsModel.appSettings">
+    <main class="pb-20">
+      <RouterView />
+    </main>
+    <!-- TODO: loading and error -->
+  </UiSuspense>
   <UserFooter :items="footerItems" />
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount } from 'vue';
+import { onBeforeMount, provide } from 'vue';
 import { FooterItem, UserFooter } from '@/widgets/user-footer';
 import { useAppSettingsModel } from '@/entities/app-settings';
 import { useBalanceStateModel } from '@/entities/balance-state';
 import { useCardsModel } from '@/entities/cards';
 import { useExpenseCategoriesModel } from '@/entities/expense-categories';
 import { useExpensesModel } from '@/entities/expenses';
+import { Currency, CurrencyType } from '@/shared/lib';
+import { UiSuspense } from '@/shared/ui';
 
 const footerItems: FooterItem[] = [
   {

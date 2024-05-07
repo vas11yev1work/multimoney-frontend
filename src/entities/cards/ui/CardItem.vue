@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { Card } from '@/shared/api';
-import { getCardColor } from '@/shared/lib/get-card-color.ts';
+import { getCardColor } from '@/shared/lib';
 import { UiMoney, UiTypo } from '@/shared/ui';
 
 const props = defineProps<{

@@ -1,23 +1,24 @@
 <template>
   <div class="flex items-center gap-2 overflow-y-auto rounded-lg">
-    <AddNewCard>
-      <EditCardForm />
-    </AddNewCard>
-    <CardItem v-for="card in cards" :key="card.id" :card="card" />
+    <UiSuspense :data="cards">
+      <AddNewCard>
+        <EditCardForm />
+      </AddNewCard>
+      <CardItem v-for="card in cards.data" :key="card.id" :card="card" />
+      <template #loading>
+        <UiSkeleton gap="0.5rem" mode="dark" height="80px" width="128px" radius="0.75rem" class="!flex-row" :rows="3" />
+      </template>
+    </UiSuspense>
   </div>
 </template>
 
 <script setup lang="ts">
 import { AddNewCard, EditCardForm } from '@/features/add-new-card';
 import { CardItem } from '@/entities/cards';
-import { Card } from '@/shared/api';
+import { Card, SharedData } from '@/shared/api';
+import { UiSkeleton, UiSuspense } from '@/shared/ui';
 
-withDefaults(
-  defineProps<{
-    cards?: Card[] | null;
-  }>(),
-  {
-    cards: () => [],
-  }
-);
+defineProps<{
+  cards: SharedData<Card[]>;
+}>();
 </script>

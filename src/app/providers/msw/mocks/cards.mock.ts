@@ -1,6 +1,6 @@
 import { simpleFaker, fakerRU as faker } from '@faker-js/faker';
+import { KZT, RUB, USD } from '@/shared';
 import { Card, CardColor } from '@/shared/api';
-import { KZT, RUB, USD } from '@/shared/const/quotes.ts';
 import { Currency, divideRandomly } from '@/shared/lib';
 
 const CARD_COUNT = 3;

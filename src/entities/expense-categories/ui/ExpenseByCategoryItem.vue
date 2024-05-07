@@ -5,7 +5,7 @@
         <UiIcon :icon-name="category?.icon ?? 'faHome'" size="lg" class="text-blue-500" />
       </div>
       <div>
-        <UiTypo level="5" class="font-medium text-slate-400">{{ category?.name ?? '' }}</UiTypo>
+        <UiTypo level="5" class="mb-1 font-medium leading-4 text-slate-400">{{ category?.name ?? '' }}</UiTypo>
         <div class="flex items-end">
           <UiMoney :value="amount?.amount ?? 0" :currency="amount?.currency" class="font-semibold" />
           <div v-if="category?.limit" class="ml-1 flex">

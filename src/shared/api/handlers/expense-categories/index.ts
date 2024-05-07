@@ -1,2 +1,2 @@
 export * from './expense-categories.types';
-export * from './expense-categories.api.ts';
+export * from './expense-categories.api';

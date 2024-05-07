@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
+import { KZT, RUB, USD } from '@/shared';
 import { BalanceState } from '@/shared/api';
-import { KZT, RUB, USD } from '@/shared/const/quotes.ts';
 
 export const createBalanceStateMock = (): BalanceState => {
   const totalEUR = faker.number.float({ min: 5000, max: 10000, fractionDigits: 2 });

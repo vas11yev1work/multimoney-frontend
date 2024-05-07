@@ -1,4 +1,4 @@
-import { Currency, CurrencyType } from './currency.ts';
+import { Currency, CurrencyType } from './currency';
 
 export interface AmountModel {
   amount: number;

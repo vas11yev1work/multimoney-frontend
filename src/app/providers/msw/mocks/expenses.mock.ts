@@ -1,7 +1,7 @@
 import { simpleFaker, fakerRU as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
+import { KZT, RUB, USD } from '@/shared';
 import { Card, Expense, ExpenseCategory } from '@/shared/api';
-import { KZT, RUB, USD } from '@/shared/const/quotes.ts';
 import { Currency, divideRandomly } from '@/shared/lib';
 
 const EXPENSE_COUNT = 15;

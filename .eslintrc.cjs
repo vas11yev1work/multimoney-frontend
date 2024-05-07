@@ -42,6 +42,16 @@ module.exports = {
     }],
     'vue/no-multiple-template-root': 'off',
     'vue/multi-word-component-names': 'off',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        'js': 'never',
+        'jsx': 'never',
+        'ts': 'never',
+        'tsx': 'never'
+      }
+    ]
   },
   parserOptions: {
     parser: '@typescript-eslint/parser',

@@ -1,4 +1,4 @@
-import { api } from '../../api.ts';
+import { api } from '../../api';
 import { Card } from './cards.types';
 
 export class CardsApi {

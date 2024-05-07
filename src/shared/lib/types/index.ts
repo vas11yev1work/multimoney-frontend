@@ -1,2 +1,2 @@
-export * from './currency.ts';
-export * from './amount-model.ts';
+export * from './currency';
+export * from './amount-model';

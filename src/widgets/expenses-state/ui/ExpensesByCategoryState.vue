@@ -1,11 +1,23 @@
 <template>
   <div class="flex w-full flex-col gap-3">
-    <ExpenseByCategoryItem
-      v-for="category in sortedCategories"
-      :key="category.id"
-      :category="category"
-      :amount="categoriesAmount.get(category.id)"
-    />
+    <UiSuspense :data="[categories, expenses]">
+      <ExpenseByCategoryItem
+        v-for="category in sortedCategories"
+        :key="category.id"
+        :category="category"
+        :amount="categoriesAmount.get(category.id)"
+      />
+      <template #loading>
+        <div v-for="n in 5" :key="n" class="flex items-center">
+          <UiSkeleton height="40px" width="40px" radius="0.75rem" />
+          <div class="ml-3">
+            <UiSkeleton height="16px" width="80px" class="mb-1" />
+            <UiSkeleton height="24px" width="140px" />
+          </div>
+        </div>
+      </template>
+      <!-- TODO: error -->
+    </UiSuspense>
   </div>
 </template>
 
@@ -13,16 +25,21 @@
 import { cloneDeep } from 'lodash';
 import { computed } from 'vue';
 import { ExpenseByCategoryItem } from '@/entities/expense-categories';
-import { ExpenseCategory } from '@/shared/api';
+import { Expense, ExpenseCategory, SharedData } from '@/shared/api';
 import { AmountModel } from '@/shared/lib';
+import { UiSkeleton, UiSuspense } from '@/shared/ui';
 
 const props = defineProps<{
-  categories: ExpenseCategory[];
+  categories: SharedData<ExpenseCategory[]>;
+  expenses: SharedData<Expense[]>;
   categoriesAmount: Map<string, AmountModel>;
 }>();
 
 const sortedCategories = computed(() => {
-  return cloneDeep(props.categories)
+  if (!props.categories.data) {
+    return [];
+  }
+  return cloneDeep(props.categories.data)
     .sort(
       (a: ExpenseCategory, b: ExpenseCategory) =>
         (props.categoriesAmount.get(b.id)?.amount || 0) - (props.categoriesAmount.get(a.id)?.amount || 0)
