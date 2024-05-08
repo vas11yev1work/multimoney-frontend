@@ -18,4 +18,16 @@ export const useCardsModel = defineStore({
       });
     },
   },
+  getters: {
+    cardsMapById: (state: CardsModel): Map<string, Card> => {
+      const map = new Map<string, Card>();
+
+      if (!state.cards.data) return map;
+
+      state.cards.data.forEach(card => {
+        map.set(card.id, card);
+      });
+      return map;
+    },
+  },
 });

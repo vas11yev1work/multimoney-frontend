@@ -2,7 +2,7 @@
   <button
     :disabled="disabledState"
     :type="type"
-    :class="[$style.base, color, outline, sizeStyle, rounded ? 'rounded-full' : 'rounded-xl', block ? 'w-full' : '']"
+    :class="[$style.base, color, outline, sizeStyle, rounded ? 'rounded-full' : 'rounded-lg', block ? 'w-full' : '']"
     @click="$emit('click')"
   >
     <div v-if="$slots['left-icon'] && !loading" class="h-5 w-5" :class="$slots.default && 'mr-1.5'">
@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { UiSpinner } from '@/shared/ui';
+import { UiSpinner } from '../ui-spinner';
 
 const props = withDefaults(
   defineProps<{

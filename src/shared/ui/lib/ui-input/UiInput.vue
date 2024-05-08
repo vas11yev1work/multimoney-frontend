@@ -17,6 +17,7 @@
         v-model="customValue"
         :type="type"
         :name="name"
+        :readonly="readonly"
         :placeholder="placeholder"
         :class="[$style.base, sizeStyle, ringColor]"
         class="bg-white text-slate-700"
@@ -37,7 +38,7 @@
 <script setup lang="ts">
 import { useField } from 'vee-validate';
 import { computed, customRef, useSlots } from 'vue';
-import { UiTypo } from '@/shared/ui';
+import { UiTypo } from '../ui-typo';
 
 const props = withDefaults(
   defineProps<{
@@ -49,6 +50,7 @@ const props = withDefaults(
     placeholder?: string;
     size?: 'small' | 'medium' | 'large';
     autocomplete?: string;
+    readonly?: boolean;
     required?: boolean;
   }>(),
   {
@@ -60,12 +62,13 @@ const props = withDefaults(
     type: 'text',
     size: 'medium',
     autocomplete: 'on',
+    readonly: false,
     required: false,
   }
 );
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', v: string): void;
+  (e: 'update:model-value', v: string): void;
 }>();
 
 const { value, errorMessage, handleBlur, handleChange } = useField<string>(() => props.name, undefined, {
@@ -87,7 +90,7 @@ const customValue = customRef<string>((track, trigger) => ({
       value.value = newValue;
       return;
     }
-    emit('update:modelValue', newValue);
+    emit('update:model-value', newValue);
   },
 }));
 

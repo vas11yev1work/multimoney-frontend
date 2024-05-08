@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import { useField } from 'vee-validate';
 import { computed, customRef, useSlots } from 'vue';
-import { UiTypo } from '@/shared/ui';
+import { UiTypo } from '../ui-typo';
 
 interface Option {
   value: string;
@@ -66,7 +66,7 @@ const props = withDefaults(
 );
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', v: string): void;
+  (e: 'update:model-value', v: string): void;
 }>();
 
 const { value, errorMessage, handleBlur, handleChange } = useField<string>(() => props.name, undefined, {
@@ -88,7 +88,7 @@ const customValue = customRef<string>((track, trigger) => ({
       value.value = newValue;
       return;
     }
-    emit('update:modelValue', newValue);
+    emit('update:model-value', newValue);
   },
 }));
 

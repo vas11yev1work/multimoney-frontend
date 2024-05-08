@@ -1,0 +1,88 @@
+<template>
+  <form class="flex flex-col gap-3" @submit="onSubmit">
+    <UiFakeInput v-slot="slotProps" label="Выберите счет" name="cardId" required @click="showCardModal = true">
+      {{ cardsModel.cardsMapById.get(slotProps.value)?.name ?? '' }}
+      {{ cardsModel.cardsMapById.get(slotProps.value)?.label ?? '' }}
+    </UiFakeInput>
+    <UiFakeInput
+      v-slot="slotProps"
+      label="Выберите категорию"
+      name="categoryId"
+      required
+      @click="showCategoryModal = true"
+    >
+      {{ expenseCategoriesModel.categoriesMapById.get(slotProps.value)?.name ?? '' }}
+    </UiFakeInput>
+    <UiInput
+      label="Сумма"
+      name="currencyAmount"
+      :hint="`Введите сумму в валюте счета ${cardCurrency ? `(${cardCurrency})` : ''}`"
+      type="number"
+      required
+    />
+    <UiFakeInput label="Дата" required name="date" @click="showDateModal = true">
+      {{ dayjs(values.date).format('DD MMMM YYYY') }}
+    </UiFakeInput>
+    <UiInput label="Описание" name="description" />
+
+    <UiButton type="submit" size="large" class="sticky bottom-4 mt-2">Добавить</UiButton>
+
+    <UiDatepickerModal
+      v-model:show="showDateModal"
+      :model-value="values.date"
+      @update:model-value="setFieldValue('date', dayjs($event).toISOString())"
+    />
+    <SelectCardModal v-model="showCardModal" @select-card="onCardSelect" />
+    <SelectCategoryModal v-model="showCategoryModal" @select-category="onCategorySelect" />
+  </form>
+</template>
+
+<script setup lang="ts">
+import { toTypedSchema } from '@vee-validate/zod';
+import dayjs from 'dayjs';
+import { useForm } from 'vee-validate';
+import { computed, ref } from 'vue';
+import SelectCategoryModal from '@/features/add-expense/ui/SelectCategoryModal.vue';
+import { useCardsModel } from '@/entities/cards';
+import { useExpenseCategoriesModel } from '@/entities/expense-categories';
+import { UiButton, UiDatepickerModal, UiFakeInput, UiInput } from '@/shared/ui';
+import { validationSchema } from '../model';
+import SelectCardModal from './SelectCardModal.vue';
+
+const cardsModel = useCardsModel();
+const expenseCategoriesModel = useExpenseCategoriesModel();
+
+const { handleSubmit, setFieldValue, values } = useForm({
+  validationSchema: toTypedSchema(validationSchema),
+  initialValues: {
+    currencyAmount: undefined,
+    description: undefined,
+    date: dayjs().toISOString(),
+    cardId: undefined,
+    categoryId: undefined,
+  },
+});
+
+const showCardModal = ref(false);
+const showCategoryModal = ref(false);
+const showDateModal = ref(false);
+
+const cardCurrency = computed(() => {
+  if (!values.cardId) return;
+  const card = cardsModel.cardsMapById.get(values.cardId);
+  if (!card) return;
+  return card.currencyBalance.currency;
+});
+
+const onSubmit = handleSubmit(values => {
+  console.log(values);
+});
+
+function onCardSelect(cardId: string) {
+  setFieldValue('cardId', cardId);
+}
+
+function onCategorySelect(categoryId: string) {
+  setFieldValue('categoryId', categoryId);
+}
+</script>

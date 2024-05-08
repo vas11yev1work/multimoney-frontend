@@ -3,7 +3,7 @@
     <div
       v-if="modelValue"
       class="fixed bottom-0 left-0 right-0 top-0 z-40 bg-slate-700 opacity-90"
-      @click="$emit('update:modelValue', false)"
+      @click="$emit('update:model-value', false)"
     />
   </Transition>
   <Transition name="slide">
@@ -18,8 +18,8 @@
         :class="scrollTop > 0 ? 'border-b border-gray-200' : ''"
       >
         <UiTypo class="text-lg font-semibold">{{ title }}</UiTypo>
-        <button class="h-8 w-8 text-slate-400">
-          <UiIcon icon-name="faTimes" size="lg" @click="$emit('update:modelValue', false)" />
+        <button type="button" class="h-8 w-8 text-slate-400">
+          <UiIcon icon-name="faTimes" size="lg" @click="$emit('update:model-value', false)" />
         </button>
       </div>
       <div class="px-4 pb-4">
@@ -31,7 +31,8 @@
 
 <script setup lang="ts">
 import { nextTick, ref, watch } from 'vue';
-import { UiTypo, UiIcon } from '@/shared/ui';
+import { UiIcon } from '../ui-icon';
+import { UiTypo } from '../ui-typo';
 
 const props = defineProps<{
   modelValue: boolean;
@@ -39,7 +40,7 @@ const props = defineProps<{
 }>();
 
 defineEmits<{
-  (e: 'update:modelValue', value: boolean): void;
+  (e: 'update:model-value', value: boolean): void;
 }>();
 
 const scrollTop = ref(0);

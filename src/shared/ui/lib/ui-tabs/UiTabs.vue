@@ -5,7 +5,7 @@
       :key="tab.value"
       class="flex h-8 w-full items-center justify-center rounded-md"
       :class="modelValue === tab.value ? 'bg-white shadow' : ''"
-      @click="$emit('update:modelValue', tab.value)"
+      @click="$emit('update:model-value', tab.value)"
     >
       <UiIcon v-if="tab.icon" :icon-name="tab.icon" class="mr-1.5" />
       <UiTypo level="5" class="font-semibold">{{ tab.label }}</UiTypo>
@@ -15,7 +15,8 @@
 
 <script setup lang="ts">
 import { computed, onBeforeMount } from 'vue';
-import { UiIcon, UiTypo } from '@/shared/ui';
+import { UiIcon } from '../ui-icon';
+import { UiTypo } from '../ui-typo';
 
 interface TabItem {
   value: string;
@@ -34,14 +35,14 @@ const props = withDefaults(
 );
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void;
+  (e: 'update:model-value', value: string): void;
 }>();
 
 const tabsCount = computed(() => props.tabs.length);
 
 onBeforeMount(() => {
   if (props.modelValue === null && props.tabs.length > 0) {
-    emit('update:modelValue', props.tabs[0].value);
+    emit('update:model-value', props.tabs[0].value);
   }
 });
 </script>

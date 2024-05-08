@@ -19,9 +19,15 @@ export const useExpenseCategoriesModel = defineStore({
     },
   },
   getters: {
-    getCategoryById: (state: ExpenseCategoriesModel) => (id: string) => {
-      if (!state.categories.data) return null;
-      return state.categories.data.find(category => category.id === id) ?? null;
+    categoriesMapById: (state: ExpenseCategoriesModel): Map<string, ExpenseCategory> => {
+      const map = new Map<string, ExpenseCategory>();
+
+      if (!state.categories.data) return map;
+
+      state.categories.data.forEach(category => {
+        map.set(category.id, category);
+      });
+      return map;
     },
   },
 });
