@@ -3,3 +3,4 @@ export * from './balance-state';
 export * from './cards';
 export * from './expense-categories';
 export * from './expenses';
+export * from './income-categories';
