@@ -34,8 +34,8 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
-import { useExpenseCategoriesModel } from '@/entities/expense-categories';
 import { UiIcon, UiModal, UiSkeleton, UiSuspense, UiTypo } from '@/shared/ui';
+import { useExpenseCategoriesModel } from '../model';
 
 const props = defineProps<{
   modelValue: boolean;

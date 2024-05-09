@@ -37,8 +37,9 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
-import { ThumbnailCard, useCardsModel } from '@/entities/cards';
 import { UiModal, UiMoney, UiSkeleton, UiSuspense, UiTypo } from '@/shared/ui';
+import { useCardsModel } from '../index';
+import ThumbnailCard from './ThumbnailCard.vue';
 
 const props = defineProps<{
   modelValue: boolean;

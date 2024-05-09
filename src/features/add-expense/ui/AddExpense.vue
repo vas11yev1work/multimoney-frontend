@@ -28,7 +28,7 @@
     <UiButton type="submit" size="large" class="sticky bottom-4 mt-2">Добавить</UiButton>
 
     <SelectCardModal v-model="showCardModal" @select-card="onCardSelect" />
-    <SelectCategoryModal v-model="showCategoryModal" @select-category="onCategorySelect" />
+    <SelectExpenseCategoryModal v-model="showCategoryModal" @select-category="onCategorySelect" />
     <UiDatepickerModal
       v-model:show="showDateModal"
       :model-value="dayjs(values.date)"
@@ -43,12 +43,10 @@ import { toTypedSchema } from '@vee-validate/zod';
 import dayjs from 'dayjs';
 import { useForm } from 'vee-validate';
 import { computed, ref } from 'vue';
-import { useCardsModel } from '@/entities/cards';
-import { useExpenseCategoriesModel } from '@/entities/expense-categories';
+import { useCardsModel, SelectCardModal } from '@/entities/cards';
+import { useExpenseCategoriesModel, SelectExpenseCategoryModal } from '@/entities/expense-categories';
 import { UiButton, UiDatepickerModal, UiFakeInput, UiInput } from '@/shared/ui';
 import { validationSchema } from '../model';
-import SelectCardModal from './SelectCardModal.vue';
-import SelectCategoryModal from './SelectCategoryModal.vue';
 
 const cardsModel = useCardsModel();
 const expenseCategoriesModel = useExpenseCategoriesModel();
