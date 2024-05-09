@@ -11,3 +11,5 @@ export * from './ui-tabs';
 export * from './ui-skeleton';
 export * from './ui-suspense';
 export * from './ui-fake-input';
+export * from './ui-datepicker';
+export * from './ui-datepicker-modal';

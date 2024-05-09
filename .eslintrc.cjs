@@ -51,7 +51,9 @@ module.exports = {
         'ts': 'never',
         'tsx': 'never'
       }
-    ]
+    ],
+    'vue/custom-event-name-casing': ['error', 'kebab-case'],
+    'vue/no-v-model-argument': 'off'
   },
   parserOptions: {
     parser: '@typescript-eslint/parser',
