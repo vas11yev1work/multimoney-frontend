@@ -27,11 +27,6 @@
 
     <UiButton type="submit" size="large" class="sticky bottom-4 mt-2">Добавить</UiButton>
 
-    <UiDatepickerModal
-      v-model:show="showDateModal"
-      :model-value="values.date"
-      @update:model-value="setFieldValue('date', dayjs($event).toISOString())"
-    />
     <SelectCardModal v-model="showCardModal" @select-card="onCardSelect" />
     <SelectCategoryModal v-model="showCategoryModal" @select-category="onCategorySelect" />
   </form>
@@ -42,12 +37,12 @@ import { toTypedSchema } from '@vee-validate/zod';
 import dayjs from 'dayjs';
 import { useForm } from 'vee-validate';
 import { computed, ref } from 'vue';
-import SelectCategoryModal from '@/features/add-expense/ui/SelectCategoryModal.vue';
 import { useCardsModel } from '@/entities/cards';
 import { useExpenseCategoriesModel } from '@/entities/expense-categories';
-import { UiButton, UiDatepickerModal, UiFakeInput, UiInput } from '@/shared/ui';
+import { UiButton, UiFakeInput, UiInput } from '@/shared/ui';
 import { validationSchema } from '../model';
 import SelectCardModal from './SelectCardModal.vue';
+import SelectCategoryModal from './SelectCategoryModal.vue';
 
 const cardsModel = useCardsModel();
 const expenseCategoriesModel = useExpenseCategoriesModel();
@@ -74,10 +69,6 @@ const cardCurrency = computed(() => {
   return card.currencyBalance.currency;
 });
 
-const onSubmit = handleSubmit(values => {
-  console.log(values);
-});
-
 function onCardSelect(cardId: string) {
   setFieldValue('cardId', cardId);
 }
@@ -85,4 +76,8 @@ function onCardSelect(cardId: string) {
 function onCategorySelect(categoryId: string) {
   setFieldValue('categoryId', categoryId);
 }
+
+const onSubmit = handleSubmit(values => {
+  console.log(values);
+});
 </script>
