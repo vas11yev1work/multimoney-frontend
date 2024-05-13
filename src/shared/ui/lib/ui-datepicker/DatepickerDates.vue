@@ -4,37 +4,34 @@
       <UiTypo level="5" class="font-medium text-slate-500">{{ weekday }}</UiTypo>
     </div>
     <div v-for="day in prevMonthDays" :key="day" class="flex h-10 items-center justify-center">
-      <button
-        type="button"
-        class="h-8 w-8 rounded-xl opacity-40 disabled:line-through"
-        :class="{ 'text-orange-500': isWeekend(day, -1) }"
+      <DateButton
         :disabled="!checkAvailableDate(day, -1)"
-        @click="selectDate(day, -1)"
-      >
-        <UiTypo class="font-semibold">{{ day }}</UiTypo>
-      </button>
+        :is-weekend="isWeekend(day, -1)"
+        :day="day"
+        :is-selected-date="false"
+        :is-current-month="false"
+        @select-date="selectDate($event, -1)"
+      />
     </div>
     <div v-for="day in days" :key="day" class="flex h-10 items-center justify-center">
-      <button
-        type="button"
-        class="disabled: h-8 w-8 rounded-xl disabled:line-through disabled:opacity-40"
-        :class="{ 'bg-blue-500 !text-white': isSelectedDate(day), 'text-orange-500': isWeekend(day) }"
+      <DateButton
         :disabled="!checkAvailableDate(day)"
-        @click="selectDate(day)"
-      >
-        <UiTypo class="font-semibold">{{ day }}</UiTypo>
-      </button>
+        :is-weekend="isWeekend(day)"
+        :day="day"
+        :is-selected-date="isSelectedDate(day)"
+        is-current-month
+        @select-date="selectDate"
+      />
     </div>
     <div v-for="day in nextMonthDays" :key="day" class="flex h-10 items-center justify-center">
-      <button
-        type="button"
-        class="h-8 w-8 rounded-xl opacity-40 disabled:line-through"
-        :class="{ 'text-orange-500': isWeekend(day, 1) }"
+      <DateButton
         :disabled="!checkAvailableDate(day, 1)"
-        @click="selectDate(day, 1)"
-      >
-        <UiTypo class="font-semibold">{{ day }}</UiTypo>
-      </button>
+        :is-weekend="isWeekend(day, 1)"
+        :day="day"
+        :is-selected-date="false"
+        :is-current-month="false"
+        @select-date="selectDate($event, 1)"
+      />
     </div>
   </div>
 </template>
@@ -44,6 +41,7 @@ import dayjs from 'dayjs';
 import { computed } from 'vue';
 import { UiTypo } from '@/shared/ui';
 import { WEEKDAYS_LIST } from './const';
+import DateButton from './DateButton.vue';
 
 const props = defineProps<{
   modelValue?: dayjs.Dayjs;

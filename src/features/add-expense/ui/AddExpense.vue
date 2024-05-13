@@ -29,12 +29,7 @@
 
     <SelectCardModal v-model="showCardModal" @select-card="onCardSelect" />
     <SelectExpenseCategoryModal v-model="showCategoryModal" @select-category="onCategorySelect" />
-    <UiDatepickerModal
-      v-model:show="showDateModal"
-      :model-value="dayjs(values.date)"
-      :max-date="dayjs()"
-      @update:model-value="setFieldValue('date', $event.toISOString())"
-    />
+    <UiDatepickerModal v-model:show="showDateModal" v-model="dateValue" :max-date="dayjs()" />
   </form>
 </template>
 
@@ -72,6 +67,11 @@ const cardCurrency = computed(() => {
   const card = cardsModel.cardsMapById.get(values.cardId);
   if (!card) return;
   return card.currencyBalance.currency;
+});
+
+const dateValue = computed({
+  get: () => dayjs(values.date),
+  set: (value: dayjs.Dayjs) => setFieldValue('date', value.toISOString()),
 });
 
 function onCardSelect(cardId: string) {
