@@ -5,10 +5,10 @@
       label="Лимит"
       name="limit"
       type="number"
-      :hint="`Необходимо указать лимит в главной выбранной валюте (${mainCurrency})`"
+      :hint="`Необходимо указать лимит в основной выбранной валюте (${getCurrencyName(mainCurrency)})`"
     />
     <ExpenseIconSelect name="icon" />
-    <UiButton type="submit" size="large" class="sticky bottom-4 mt-2">Добавить</UiButton>
+    <UiButton type="submit" size="large" class="sticky bottom-4 mt-2">Добавить категорию</UiButton>
   </form>
 </template>
 
@@ -16,6 +16,7 @@
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 import { useAppSettingsModel } from '@/entities/app-settings';
+import { getCurrencyName } from '@/shared/lib';
 import { UiButton, UiInput, ExpenseIconSelect } from '@/shared/ui';
 import { validationSchema } from '../model';
 

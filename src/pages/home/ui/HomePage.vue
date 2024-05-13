@@ -18,7 +18,7 @@
         <AddTransaction />
       </div>
       <div class="mt-4 rounded-xl bg-white p-4">
-        <UiTypo type="heading" class="mb-2 font-semibold">Расходы по категориям</UiTypo>
+        <UiTypo type="heading" class="mb-2 font-semibold">Расходы за месяц</UiTypo>
         <ExpensesByCategoryState
           :categories="expenseCategoryModel.categories"
           :expenses="expensesModel.expenses"

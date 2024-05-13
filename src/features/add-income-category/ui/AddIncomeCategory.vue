@@ -2,7 +2,7 @@
   <form class="flex flex-col gap-3" @submit="onSubmit">
     <UiInput label="Название категории" name="name" required />
     <IncomeIconSelect name="icon" />
-    <UiButton type="submit" size="large" class="sticky bottom-4 mt-2">Добавить</UiButton>
+    <UiButton type="submit" size="large" class="sticky bottom-4 mt-2">Добавить категорию</UiButton>
   </form>
 </template>
 

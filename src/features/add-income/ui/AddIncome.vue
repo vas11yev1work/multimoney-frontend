@@ -11,7 +11,7 @@
       required
       @click="showCategoryModal = true"
     >
-      {{ expenseCategoriesModel.categoriesMapById.get(slotProps.value)?.name ?? '' }}
+      {{ incomeCategoriesModel.categoriesMapById.get(slotProps.value)?.name ?? '' }}
     </UiFakeInput>
     <UiInput
       label="Сумма"
@@ -25,10 +25,10 @@
     </UiFakeInput>
     <UiInput label="Описание" name="description" />
 
-    <UiButton type="submit" size="large" class="sticky bottom-4 mt-2">Добавить расход</UiButton>
+    <UiButton type="submit" size="large" class="sticky bottom-4 mt-2">Добавить доход</UiButton>
 
     <SelectCardModal v-model="showCardModal" @select-card="onCardSelect" />
-    <SelectExpenseCategoryModal v-model="showCategoryModal" @select-category="onCategorySelect" />
+    <SelectIncomeCategoryModal v-model="showCategoryModal" @select-category="onCategorySelect" />
     <UiDatepickerModal
       v-model:show="showDateModal"
       :model-value="dayjs(values.date)"
@@ -43,14 +43,14 @@ import { toTypedSchema } from '@vee-validate/zod';
 import dayjs from 'dayjs';
 import { useForm } from 'vee-validate';
 import { computed, ref } from 'vue';
-import { useCardsModel, SelectCardModal } from '@/entities/cards';
-import { useExpenseCategoriesModel, SelectExpenseCategoryModal } from '@/entities/expense-categories';
+import { SelectCardModal, useCardsModel } from '@/entities/cards';
+import { useIncomeCategoriesModel, SelectIncomeCategoryModal } from '@/entities/income-categories';
 import { getCurrencyName } from '@/shared/lib';
 import { UiButton, UiDatepickerModal, UiFakeInput, UiInput } from '@/shared/ui';
 import { validationSchema } from '../model';
 
 const cardsModel = useCardsModel();
-const expenseCategoriesModel = useExpenseCategoriesModel();
+const incomeCategoriesModel = useIncomeCategoriesModel();
 
 const { handleSubmit, setFieldValue, values } = useForm({
   validationSchema: toTypedSchema(validationSchema),

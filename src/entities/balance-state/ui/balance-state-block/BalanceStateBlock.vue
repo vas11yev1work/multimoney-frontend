@@ -35,7 +35,7 @@ const props = defineProps<{
 }>();
 
 const title = computed(() => {
-  return props.type === 'incomes' ? 'Доходы (мес.)' : 'Траты (мес.)';
+  return props.type === 'incomes' ? 'Доходы за месяц' : 'Траты за месяц';
 });
 
 const moneyColor = computed(() => {
