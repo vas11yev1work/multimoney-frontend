@@ -32,11 +32,13 @@ export default defineConfig({
             name: 'Добавить доход',
             short_name: 'Доход',
             url: '/#income',
+            icons: [{ src: 'income.png', sizes: '96x96', type: 'image/png' }],
           },
           {
             name: 'Добавить расход',
             short_name: 'Расход',
             url: '/#expense',
+            icons: [{ src: 'expense.png', sizes: '96x96', type: 'image/png' }],
           },
         ],
       },
