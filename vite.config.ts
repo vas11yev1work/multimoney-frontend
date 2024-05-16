@@ -14,6 +14,7 @@ export default defineConfig({
         name: 'Multimoney',
         short_name: 'Multimoney',
         theme_color: '#ffffff',
+        lang: 'ru',
         icons: [
           {
             src: 'icon_192.png',
@@ -24,6 +25,18 @@ export default defineConfig({
             src: 'icon_512.png',
             sizes: '512x512',
             type: 'image/png',
+          },
+        ],
+        shortcuts: [
+          {
+            name: 'Добавить доход',
+            short_name: 'Доход',
+            url: '/#income',
+          },
+          {
+            name: 'Добавить расход',
+            short_name: 'Расход',
+            url: '/#expense',
           },
         ],
       },
