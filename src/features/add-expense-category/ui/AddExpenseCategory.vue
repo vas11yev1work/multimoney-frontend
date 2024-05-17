@@ -5,6 +5,7 @@
       label="Лимит"
       name="limit"
       type="number"
+      step=".01"
       :hint="`Необходимо указать лимит в основной выбранной валюте (${getCurrencyName(mainCurrency)})`"
     />
     <ExpenseIconSelect name="icon" />

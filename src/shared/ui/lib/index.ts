@@ -13,3 +13,4 @@ export * from './ui-suspense';
 export * from './ui-fake-input';
 export * from './ui-datepicker';
 export * from './ui-datepicker-modal';
+export * from './ui-text-block';

@@ -2,7 +2,7 @@
   <form class="flex flex-col gap-3" @submit="onSubmit">
     <UiFakeInput v-slot="slotProps" label="Выберите счет" name="cardId" required @click="showCardModal = true">
       {{ cardsModel.cardsMapById.get(slotProps.value)?.name ?? '' }}
-      {{ cardsModel.cardsMapById.get(slotProps.value)?.label ?? '' }}
+      {{ slotProps.value ? `** ${cardsModel.cardsMapById.get(slotProps.value)?.label}` : '' }}
     </UiFakeInput>
     <UiFakeInput
       v-slot="slotProps"
@@ -18,6 +18,7 @@
       name="currencyAmount"
       :hint="`Введите сумму в валюте счета ${cardCurrency ? `(${getCurrencyName(cardCurrency)})` : ''}`"
       type="number"
+      step=".01"
       required
     />
     <UiFakeInput label="Дата" required name="date" @click="showDateModal = true">

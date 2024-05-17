@@ -12,7 +12,7 @@ const createCard = (amount: number): Card => {
     id: simpleFaker.string.uuid(),
     color: faker.helpers.arrayElement(Object.values(CardColor)),
     name: faker.finance.accountName(),
-    label: faker.helpers.maybe(() => `** ${faker.number.int({ min: 1000, max: 9999 })}`),
+    label: faker.helpers.maybe(() => `${faker.number.int({ min: 1000, max: 9999 })}`),
     balance: {
       amount: amount,
       currency: 'EUR',
@@ -20,6 +20,10 @@ const createCard = (amount: number): Card => {
     currencyBalance: {
       amount: amount * quotes[cardCurrency],
       currency: cardCurrency,
+    },
+    initialBalance: {
+      amount: amount,
+      currency: 'EUR',
     },
   };
 };

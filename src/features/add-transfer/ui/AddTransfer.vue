@@ -15,6 +15,7 @@
       name="currencyAmount"
       :hint="`Введите сумму в валюте счета списания ${fromCardCurrency ? `(${getCurrencyName(fromCardCurrency)})` : ''}`"
       type="number"
+      step=".01"
       required
     />
 
@@ -43,6 +44,7 @@
       name="toCurrencyAmount"
       :hint="`Введите сумму в валюте счета пополнения ${toCardCurrency ? `(${getCurrencyName(toCardCurrency)})` : ''}`"
       type="number"
+      step=".01"
       required
     />
 

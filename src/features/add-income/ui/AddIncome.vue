@@ -18,6 +18,7 @@
       name="currencyAmount"
       :hint="`Введите сумму в валюте счета ${cardCurrency ? `(${getCurrencyName(cardCurrency)})` : ''}`"
       type="number"
+      step=".01"
       required
     />
     <UiFakeInput label="Дата" required name="date" @click="showDateModal = true">

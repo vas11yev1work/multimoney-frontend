@@ -8,6 +8,7 @@
       name="initialBalance"
       hint="Рассчет будет идти исходя начального баланса счета"
       type="number"
+      step=".01"
       required
     />
     <CardColorSelect name="color" />
@@ -19,10 +20,19 @@
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 import { computed } from 'vue';
-import { CardColor } from '@/shared/api';
+import { Card, CardColor } from '@/shared/api';
 import { Currency, getCurrencyName } from '@/shared/lib';
 import { CardColorSelect, UiButton, UiInput, UiSelect } from '@/shared/ui';
 import { validationSchema } from '../model';
+
+const props = withDefaults(
+  defineProps<{
+    card?: Card;
+  }>(),
+  {
+    card: undefined,
+  }
+);
 
 const currencies = computed(() => {
   const arr = [];
@@ -39,11 +49,11 @@ const currencies = computed(() => {
 const { handleSubmit } = useForm({
   validationSchema: toTypedSchema(validationSchema),
   initialValues: {
-    name: '',
-    label: '',
-    initialBalance: undefined,
-    color: CardColor.Slate,
-    currency: undefined,
+    name: props.card?.name ?? '',
+    label: props.card?.label ?? '',
+    initialBalance: props.card?.initialBalance.amount ?? undefined,
+    color: props.card?.color ?? CardColor.Slate,
+    currency: props.card?.currencyBalance.currency ?? undefined,
   },
 });
 

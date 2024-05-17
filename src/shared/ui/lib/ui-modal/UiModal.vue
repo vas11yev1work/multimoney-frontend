@@ -18,9 +18,14 @@
         :class="scrollTop > 0 ? 'border-b border-gray-200' : ''"
       >
         <UiTypo class="text-lg font-semibold">{{ title }}</UiTypo>
-        <button type="button" class="h-8 w-8 text-slate-400">
-          <UiIcon icon-name="faTimes" size="lg" @click="$emit('update:model-value', false)" />
-        </button>
+        <div class="flex gap-2">
+          <div class="flex gap-2">
+            <slot name="additional-icons" />
+          </div>
+          <button type="button" class="h-8 w-8 text-slate-400" @click="$emit('update:model-value', false)">
+            <UiIcon icon-name="faTimes" size="lg" />
+          </button>
+        </div>
       </div>
       <div class="px-4 pb-4">
         <slot />

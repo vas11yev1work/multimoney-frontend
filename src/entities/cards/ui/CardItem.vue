@@ -1,5 +1,9 @@
 <template>
-  <div class="relative h-20 w-32 min-w-32 max-w-32 overflow-hidden rounded-xl text-white" :class="cardColor">
+  <div
+    class="relative h-20 w-32 min-w-32 max-w-32 overflow-hidden rounded-xl text-white"
+    :class="cardColor"
+    @click="$emit('click')"
+  >
     <div class="flex h-full flex-col justify-between p-2">
       <div class="flex justify-between opacity-80">
         <UiTypo
@@ -9,7 +13,7 @@
         >
           {{ card?.name || '' }}
         </UiTypo>
-        <UiTypo level="6" class="text-nowrap font-semibold">{{ card?.label || '' }}</UiTypo>
+        <UiTypo v-if="card?.label" level="6" class="text-nowrap font-semibold">** {{ card.label }}</UiTypo>
       </div>
       <div>
         <UiMoney :currency="card?.balance.currency" :value="card?.balance.amount ?? 0" class="font-bold" />
@@ -36,6 +40,10 @@ import { UiMoney, UiTypo } from '@/shared/ui';
 
 const props = defineProps<{
   card?: Card;
+}>();
+
+defineEmits<{
+  (e: 'click'): void;
 }>();
 
 const cardColor = computed(() => {

@@ -22,4 +22,5 @@ export interface Card {
   label?: string;
   balance: AmountModel;
   currencyBalance: AmountModel;
+  initialBalance: AmountModel;
 }
