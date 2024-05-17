@@ -28,6 +28,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
+import { Card } from '@/shared/api';
 import { getCurrencyName } from '@/shared/lib';
 import { UiIcon, UiModal, UiMoney, UiTextBlock, UiTypo } from '@/shared/ui';
 
