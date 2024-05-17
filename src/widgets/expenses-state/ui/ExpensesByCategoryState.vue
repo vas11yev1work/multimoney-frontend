@@ -1,6 +1,6 @@
 <template>
   <div class="flex w-full flex-col gap-3">
-    <UiSuspense :data="[categories, expenses]">
+    <UiSuspense :data="[categories, transactions]">
       <ExpenseByCategoryItem
         v-for="category in sortedCategories"
         :key="category.id"
@@ -25,13 +25,13 @@
 import { cloneDeep } from 'lodash';
 import { computed } from 'vue';
 import { ExpenseByCategoryItem } from '@/entities/expense-categories';
-import { Expense, ExpenseCategory, SharedData } from '@/shared/api';
+import { ExpenseCategory, SharedData, Transaction } from '@/shared/api';
 import { AmountModel } from '@/shared/lib';
 import { UiSkeleton, UiSuspense } from '@/shared/ui';
 
 const props = defineProps<{
   categories: SharedData<ExpenseCategory[]>;
-  expenses: SharedData<Expense[]>;
+  transactions: SharedData<Transaction[]>;
   categoriesAmount: Map<string, AmountModel>;
 }>();
 

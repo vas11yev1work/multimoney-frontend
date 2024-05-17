@@ -1,5 +1,5 @@
 import { simpleFaker, fakerRU as faker } from '@faker-js/faker';
-import { KZT, RUB, USD } from '@/shared';
+import { quotes } from '@/shared';
 import { Card, CardColor } from '@/shared/api';
 import { Currency, divideRandomly } from '@/shared/lib';
 
@@ -7,12 +7,6 @@ const CARD_COUNT = 3;
 
 const createCard = (amount: number): Card => {
   const cardCurrency = faker.helpers.arrayElement(['USD', 'EUR', 'RUB', 'KZT']) as Currency;
-  const quotes = {
-    KZT,
-    RUB,
-    USD,
-    EUR: 1,
-  } as Record<Currency, number>;
 
   return {
     id: simpleFaker.string.uuid(),

@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { KZT, RUB, USD } from '@/shared';
+import { quotes } from '@/shared';
 import { BalanceState } from '@/shared/api';
 
 export const createBalanceStateMock = (): BalanceState => {
@@ -10,21 +10,21 @@ export const createBalanceStateMock = (): BalanceState => {
   return {
     total: {
       EUR: { amount: totalEUR, currency: 'EUR' },
-      USD: { amount: totalEUR * USD, currency: 'USD' },
-      RUB: { amount: totalEUR * RUB, currency: 'RUB' },
-      KZT: { amount: totalEUR * KZT, currency: 'RUB' },
+      USD: { amount: totalEUR * quotes.USD, currency: 'USD' },
+      RUB: { amount: totalEUR * quotes.RUB, currency: 'RUB' },
+      KZT: { amount: totalEUR * quotes.KZT, currency: 'RUB' },
     },
     incomes: {
       EUR: { amount: incomesEUR, currency: 'EUR' },
-      USD: { amount: incomesEUR * USD, currency: 'USD' },
-      RUB: { amount: incomesEUR * RUB, currency: 'RUB' },
-      KZT: { amount: incomesEUR * KZT, currency: 'RUB' },
+      USD: { amount: incomesEUR * quotes.USD, currency: 'USD' },
+      RUB: { amount: incomesEUR * quotes.RUB, currency: 'RUB' },
+      KZT: { amount: incomesEUR * quotes.KZT, currency: 'RUB' },
     },
     expenses: {
       EUR: { amount: expensesEUR, currency: 'EUR' },
-      USD: { amount: expensesEUR * USD, currency: 'USD' },
-      RUB: { amount: expensesEUR * RUB, currency: 'RUB' },
-      KZT: { amount: expensesEUR * KZT, currency: 'RUB' },
+      USD: { amount: expensesEUR * quotes.USD, currency: 'USD' },
+      RUB: { amount: expensesEUR * quotes.RUB, currency: 'RUB' },
+      KZT: { amount: expensesEUR * quotes.KZT, currency: 'RUB' },
     },
   };
 };

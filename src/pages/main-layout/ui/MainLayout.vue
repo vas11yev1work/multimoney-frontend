@@ -15,8 +15,8 @@ import { useAppSettingsModel } from '@/entities/app-settings';
 import { useBalanceStateModel } from '@/entities/balance-state';
 import { useCardsModel } from '@/entities/cards';
 import { useExpenseCategoriesModel } from '@/entities/expense-categories';
-import { useExpensesModel } from '@/entities/expenses';
 import { useIncomeCategoriesModel } from '@/entities/income-categories';
+import { useTransactionsModel } from '@/entities/transactions';
 import { UiSuspense } from '@/shared/ui';
 
 const footerItems: FooterItem[] = [
@@ -47,7 +47,7 @@ const appSettingsModel = useAppSettingsModel();
 const cardsModel = useCardsModel();
 const expenseCategoriesModel = useExpenseCategoriesModel();
 const incomeCategoriesModel = useIncomeCategoriesModel();
-const expensesModel = useExpensesModel();
+const transactionsModel = useTransactionsModel();
 
 onBeforeMount(async () => {
   await appSettingsModel.loadAppSettings();
@@ -56,7 +56,7 @@ onBeforeMount(async () => {
     cardsModel.loadCards(),
     expenseCategoriesModel.loadCategories(),
     incomeCategoriesModel.loadCategories(),
-    expensesModel.loadExpenses(),
+    transactionsModel.loadTransactions(),
   ]);
 });
 </script>

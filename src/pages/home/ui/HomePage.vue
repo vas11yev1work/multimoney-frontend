@@ -21,8 +21,8 @@
         <UiTypo type="heading" class="mb-2 font-semibold">Расходы за месяц</UiTypo>
         <ExpensesByCategoryState
           :categories="expenseCategoryModel.categories"
-          :expenses="expensesModel.expenses"
-          :categories-amount="expensesModel.expensesAmountByCategoryId"
+          :transactions="transactionsModel.transactions"
+          :categories-amount="transactionsModel.expensesAmountByCategoryId"
         />
       </div>
     </UiContainer>
@@ -39,12 +39,12 @@ import { useAppSettingsModel } from '@/entities/app-settings';
 import { TotalBalance, useBalanceStateModel } from '@/entities/balance-state';
 import { useCardsModel } from '@/entities/cards';
 import { useExpenseCategoriesModel } from '@/entities/expense-categories';
-import { useExpensesModel } from '@/entities/expenses';
+import { useTransactionsModel } from '@/entities/transactions';
 import { UiContainer, UiTypo } from '@/shared/ui';
 
 const balanceStateModel = useBalanceStateModel();
 const cardsModel = useCardsModel();
 const appSettingsModel = useAppSettingsModel();
 const expenseCategoryModel = useExpenseCategoriesModel();
-const expensesModel = useExpensesModel();
+const transactionsModel = useTransactionsModel();
 </script>
