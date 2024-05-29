@@ -38,7 +38,7 @@ const footerItems: FooterItem[] = [
   {
     label: 'Настройки',
     icon: 'faGear',
-    route: 'HomePage',
+    route: 'DebugPage',
   },
 ];
 

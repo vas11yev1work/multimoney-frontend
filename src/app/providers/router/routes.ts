@@ -11,11 +11,11 @@ export const routes: Readonly<RouteRecordRaw[]> = [
         name: 'HomePage',
         component: () => import('@/pages/home'),
       },
-      {
-        path: 'debug',
-        name: 'DebugPage',
-        component: () => import('@/pages/debug'),
-      },
     ],
+  },
+  {
+    path: '/debug',
+    name: 'DebugPage',
+    component: () => import('@/pages/debug'),
   },
 ];
