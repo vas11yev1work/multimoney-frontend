@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 
-export type DatepickerModel = dayjs.Dayjs | [dayjs.Dayjs | undefined, dayjs.Dayjs | undefined];
+export type DatepickerModel = dayjs.Dayjs | [dayjs.Dayjs | undefined, dayjs.Dayjs | undefined] | [];
 
 export interface Props {
   modelValue?: DatepickerModel;

@@ -10,6 +10,7 @@
 import dayjs from 'dayjs';
 import { ref } from 'vue';
 import { UiDatepicker, UiTypo } from '@/shared/ui';
+import type { DatepickerModel } from '@/shared/ui';
 
-const date = ref([undefined, undefined]);
+const date = ref<DatepickerModel>([]);
 </script>
