@@ -28,14 +28,22 @@ import { BalanceState, SharedData } from '@/shared/api';
 import { Currency, CurrencyType } from '@/shared/lib';
 import { UiMoney, UiSkeleton, UiSuspense, UiTypo } from '@/shared/ui';
 
-const props = defineProps<{
-  type: 'incomes' | 'expenses';
-  balance: SharedData<BalanceState>;
-  currency: Currency | CurrencyType;
-}>();
+const props = withDefaults(
+  defineProps<{
+    type: 'incomes' | 'expenses';
+    balance: SharedData<BalanceState>;
+    currency: Currency | CurrencyType;
+    incomeText?: string;
+    expenseText?: string;
+  }>(),
+  {
+    incomeText: 'Доходы за месяц',
+    expenseText: 'Траты за месяц',
+  }
+);
 
 const title = computed(() => {
-  return props.type === 'incomes' ? 'Доходы за месяц' : 'Траты за месяц';
+  return props.type === 'incomes' ? props.incomeText : props.expenseText;
 });
 
 const moneyColor = computed(() => {

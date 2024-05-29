@@ -100,12 +100,12 @@ function isSelectedDate(day: number, offset: number = 0) {
     const [start, end] = props.modelValue;
     if (start && end) {
       return (
-        startOfMonth.value.add(offset, 'month').date(day).isSame(start) ||
-        startOfMonth.value.add(offset, 'month').date(day).isSame(end)
+        startOfMonth.value.add(offset, 'month').date(day).isSame(start, 'day') ||
+        startOfMonth.value.add(offset, 'month').date(day).isSame(end, 'day')
       );
     }
     if (start) {
-      return startOfMonth.value.add(offset, 'month').date(day).isSame(start);
+      return startOfMonth.value.add(offset, 'month').date(day).isSame(start, 'day');
     }
     return false;
   }
@@ -128,7 +128,7 @@ function isFirstDateOfRange(day: number, offset: number = 0) {
   if (!props.modelValue || !Array.isArray(props.modelValue) || !props.modelValue.length) return false;
   const [start] = props.modelValue;
   if (start) {
-    return startOfMonth.value.add(offset, 'month').date(day).isSame(start);
+    return startOfMonth.value.add(offset, 'month').date(day).isSame(start, 'day');
   }
   return false;
 }
@@ -137,7 +137,7 @@ function isLastDateOfRange(day: number, offset: number = 0) {
   if (!props.modelValue || !Array.isArray(props.modelValue) || !props.modelValue.length) return false;
   const [, end] = props.modelValue;
   if (end) {
-    return startOfMonth.value.add(offset, 'month').date(day).isSame(end);
+    return startOfMonth.value.add(offset, 'month').date(day).isSame(end, 'day');
   }
   return false;
 }

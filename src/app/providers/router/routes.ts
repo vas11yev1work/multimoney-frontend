@@ -11,6 +11,11 @@ export const routes: Readonly<RouteRecordRaw[]> = [
         name: 'HomePage',
         component: () => import('@/pages/home'),
       },
+      {
+        path: 'history',
+        name: 'HistoryPage',
+        component: () => import('@/pages/history'),
+      },
     ],
   },
   {

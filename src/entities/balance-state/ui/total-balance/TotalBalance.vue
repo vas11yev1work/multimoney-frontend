@@ -2,7 +2,7 @@
   <UiContainer class="flex h-full flex-col justify-center" @click="$emit('change-currency')">
     <UiTypo level="5" class="mb-1 font-semibold leading-5 text-slate-400">Общий баланс</UiTypo>
     <UiSuspense :data="balance">
-      <UiMoney type="heading" level="2" class="font-bold" :value="currentBalance" :currency="currency" />
+      <UiMoney type="heading" level="2" class="font-bold leading-10" :value="currentBalance" :currency="currency" />
       <template #loading>
         <UiSkeleton height="36px" width="180px" radius="8px" />
       </template>

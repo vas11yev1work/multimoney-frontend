@@ -3,9 +3,9 @@
     <main class="pb-20">
       <RouterView />
     </main>
+    <UserFooter :items="footerItems" />
     <!-- TODO: loading and error -->
   </UiSuspense>
-  <UserFooter :items="footerItems" />
 </template>
 
 <script setup lang="ts">
@@ -33,7 +33,7 @@ const footerItems: FooterItem[] = [
   {
     label: 'История',
     icon: 'faClock',
-    route: 'HomePage',
+    route: 'HistoryPage',
   },
   {
     label: 'Настройки',

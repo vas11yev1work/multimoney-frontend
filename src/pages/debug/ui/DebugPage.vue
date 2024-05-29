@@ -12,5 +12,5 @@ import { ref } from 'vue';
 import { UiDatepicker, UiTypo } from '@/shared/ui';
 import type { DatepickerModel } from '@/shared/ui';
 
-const date = ref<DatepickerModel>([]);
+const date = ref<DatepickerModel>([dayjs().startOf('month'), dayjs().endOf('day')]);
 </script>
