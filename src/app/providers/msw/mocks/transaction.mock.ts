@@ -8,12 +8,14 @@ import {
   IncomeCategory,
   TransactionExpense,
   TransactionIncome,
+  TransactionTransfer,
   TransactionType,
 } from '@/shared/api';
 import { divideRandomly } from '@/shared/lib';
 
 const EXPENSE_COUNT = 15;
 const INCOME_COUNT = 4;
+const TRANSFER_COUNT = 2;
 
 const createExpense = (amount: number, card: Card, categoryId: string): TransactionExpense => {
   return {
@@ -53,6 +55,33 @@ const createIncome = (amount: number, card: Card, categoryId: string): Transacti
   };
 };
 
+const createTransfer = (amount: number, cardFrom: Card, cardTo: Card): TransactionTransfer => {
+  return {
+    id: simpleFaker.string.uuid(),
+    type: TransactionType.Transfer,
+    amount: {
+      amount,
+      currency: 'EUR',
+    },
+    currencyAmount: {
+      amount: amount * quotes[cardFrom.currencyBalance.currency],
+      currency: cardFrom.currencyBalance.currency,
+    },
+    toAmount: {
+      amount,
+      currency: 'EUR',
+    },
+    toCurrencyAmount: {
+      amount: amount * quotes[cardTo.currencyBalance.currency],
+      currency: cardTo.currencyBalance.currency,
+    },
+    date: faker.date.between({ from: dayjs().startOf('month').format(), to: dayjs().format() }).toISOString(),
+    cardId: cardFrom.id,
+    toCardId: cardTo.id,
+    description: faker.helpers.maybe(() => faker.finance.transactionDescription()),
+  };
+};
+
 const createExpensesMock = (totalEur: number, cards: Card[], categories: ExpenseCategory[]): TransactionExpense[] => {
   const dividedEur = divideRandomly(totalEur, EXPENSE_COUNT);
 
@@ -73,6 +102,16 @@ const createIncomesMock = (totalEur: number, cards: Card[], categories: IncomeCa
   });
 };
 
+const createTransfersMock = (cards: Card[]): TransactionTransfer[] => {
+  const dividedEur = divideRandomly(faker.number.int({ min: 300, max: 1000 }), TRANSFER_COUNT);
+
+  return new Array(TRANSFER_COUNT).fill(0).map(() => {
+    const cardFrom = faker.helpers.arrayElement(cards);
+    const cardTo = faker.helpers.arrayElement(cards.filter(card => card.id !== cardFrom.id));
+    return createTransfer(dividedEur[0], cardFrom, cardTo);
+  });
+};
+
 export const createTransactionsMock = (
   balanceState: BalanceState,
   cards: Card[],
@@ -83,6 +122,7 @@ export const createTransactionsMock = (
   const totalExpenses = balanceState.expenses.EUR?.amount ?? 0;
   const incomes = createIncomesMock(totalIncomes, cards, incomeCategories);
   const expenses = createExpensesMock(totalExpenses, cards, expenseCategories);
+  const transfers = createTransfersMock(cards);
 
-  return [...expenses, ...incomes].sort((a, b) => dayjs(b.date).diff(dayjs(a.date)));
+  return [...expenses, ...incomes, ...transfers].sort((a, b) => dayjs(b.date).diff(dayjs(a.date)));
 };

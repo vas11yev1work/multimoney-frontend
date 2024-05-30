@@ -8,6 +8,7 @@
             :transaction="transaction"
             :category="getTransactionCategory(transaction)"
             :card="getTransactionCard(transaction)"
+            :to-card="getTransactionCard(transaction, true)"
           />
         </div>
       </div>
@@ -35,7 +36,16 @@ import { useCardsModel } from '@/entities/cards';
 import { useExpenseCategoriesModel } from '@/entities/expense-categories';
 import { useIncomeCategoriesModel } from '@/entities/income-categories';
 import { TransactionItem } from '@/entities/transactions';
-import { Card, ExpenseCategory, IncomeCategory, isExpense, isIncome, SharedData, Transaction } from '@/shared/api';
+import {
+  Card,
+  ExpenseCategory,
+  IncomeCategory,
+  isExpense,
+  isIncome,
+  isTransfer,
+  SharedData,
+  Transaction,
+} from '@/shared/api';
 import { getTextDate } from '@/shared/lib';
 import { UiSkeleton, UiSuspense, UiTypo } from '@/shared/ui';
 
@@ -69,7 +79,10 @@ function getTransactionCategory(transaction: Transaction): IncomeCategory | Expe
   return;
 }
 
-function getTransactionCard(transaction: Transaction): Card | undefined {
+function getTransactionCard(transaction: Transaction, toCard = false): Card | undefined {
+  if (isTransfer(transaction) && toCard) {
+    return cardsModel.cardsMapById.get(transaction.toCardId);
+  }
   return cardsModel.cardsMapById.get(transaction.cardId);
 }
 </script>
