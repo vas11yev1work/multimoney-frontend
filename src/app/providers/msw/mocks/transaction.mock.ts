@@ -84,5 +84,5 @@ export const createTransactionsMock = (
   const incomes = createIncomesMock(totalIncomes, cards, incomeCategories);
   const expenses = createExpensesMock(totalExpenses, cards, expenseCategories);
 
-  return [...expenses, ...incomes].sort((a, b) => dayjs(a.date).diff(dayjs(b.date)));
+  return [...expenses, ...incomes].sort((a, b) => dayjs(b.date).diff(dayjs(a.date)));
 };
