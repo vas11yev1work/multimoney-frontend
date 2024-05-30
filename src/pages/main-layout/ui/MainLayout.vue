@@ -1,6 +1,6 @@
 <template>
   <UiSuspense :data="appSettingsModel.appSettings">
-    <main class="pb-20">
+    <main :class="$style.padding">
       <RouterView />
     </main>
     <UserFooter :items="footerItems" />
@@ -60,3 +60,10 @@ onBeforeMount(async () => {
   ]);
 });
 </script>
+
+<style module>
+.padding {
+  padding-bottom: 80px;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0) + 80px);
+}
+</style>

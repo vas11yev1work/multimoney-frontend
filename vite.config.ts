@@ -10,6 +10,9 @@ export default defineConfig({
     VitePWA({
       includeAssets: ['icon.svg', 'icon_192.png', 'icon_512.png'],
       registerType: 'autoUpdate',
+      devOptions: {
+        enabled: true,
+      },
       manifest: {
         name: 'Multimoney',
         short_name: 'Multimoney',
@@ -48,5 +51,9 @@ export default defineConfig({
     alias: {
       '@': path.join(__dirname, './src'),
     },
+  },
+  server: {
+    host: '0.0.0.0',
+    port: 3344,
   },
 });

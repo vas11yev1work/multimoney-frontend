@@ -53,7 +53,7 @@
     </UiFakeInput>
     <UiInput label="Описание" name="description" />
 
-    <UiButton type="submit" size="large" class="sticky bottom-4 mt-2">Добавить расход</UiButton>
+    <UiButton type="submit" size="large" class="sticky bottom-4 mt-2">Добавить перевод</UiButton>
 
     <SelectCardModal v-model="showFromCardModal" @select-card="onCardSelect('from', $event)" />
     <SelectCardModal v-model="showToCardModal" @select-card="onCardSelect('to', $event)" />

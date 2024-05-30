@@ -27,7 +27,7 @@
           </button>
         </div>
       </div>
-      <div class="px-4 pb-4">
+      <div :class="$style.padding">
         <slot />
       </div>
     </div>
@@ -88,5 +88,12 @@ watch(
 .slide-enter-from,
 .slide-leave-to {
   transform: translateY(100%);
+}
+</style>
+
+<style module>
+.padding {
+  padding: 0 16px 16px 16px;
+  padding: 0 16px calc(env(safe-area-inset-bottom, 0) + 16px) 16px;
 }
 </style>
