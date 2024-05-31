@@ -10,9 +10,9 @@ export default defineConfig({
     VitePWA({
       includeAssets: ['icon.svg', 'icon_192.png', 'icon_512.png'],
       registerType: 'autoUpdate',
-      devOptions: {
-        enabled: true,
-      },
+      // devOptions: {
+      //   enabled: true,
+      // },
       manifest: {
         name: 'Multimoney',
         short_name: 'Multimoney',
