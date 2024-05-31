@@ -1,7 +1,8 @@
 <template>
   <div
-    class="relative h-20 w-32 min-w-32 max-w-32 overflow-hidden rounded-xl text-white"
+    class="relative h-20 w-32 min-w-32 max-w-32 select-none overflow-hidden rounded-xl text-white transition active:scale-95"
     :class="cardColor"
+    ontouchstart
     @click="$emit('click')"
   >
     <div class="flex h-full flex-col justify-between p-2">

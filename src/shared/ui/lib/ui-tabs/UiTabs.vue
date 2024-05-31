@@ -3,7 +3,7 @@
     <button
       v-for="tab in tabs"
       :key="tab.value"
-      class="flex h-8 w-full items-center justify-center rounded-md"
+      class="flex h-8 w-full select-none items-center justify-center rounded-md"
       :class="modelValue === tab.value ? 'bg-white shadow' : ''"
       @click="$emit('update:model-value', tab.value)"
     >

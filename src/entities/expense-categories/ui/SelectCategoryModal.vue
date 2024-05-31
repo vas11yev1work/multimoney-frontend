@@ -1,12 +1,13 @@
 <template>
   <UiModal v-model="value" title="Выберите категорию">
     <UiSuspense :data="categories">
-      <div v-if="categories.data" class="-mx-2 flex flex-col">
+      <div v-if="categories.data" class="-mx-2 flex select-none flex-col">
         <button
           v-for="category in categories.data"
           :key="category.id"
           type="button"
-          class="flex rounded-md p-2 text-left active:bg-slate-100"
+          class="flex rounded-md p-2 text-left active:scale-[.98] active:bg-gray-100"
+          ontouchstart
           @click="selectCategory(category.id)"
         >
           <div class="flex items-center">

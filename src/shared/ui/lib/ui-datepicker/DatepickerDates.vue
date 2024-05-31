@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-7">
+  <div class="grid select-none grid-cols-7">
     <div v-for="weekday in WEEKDAYS_LIST" :key="weekday" class="flex h-8 items-center justify-center">
       <UiTypo level="5" class="font-medium text-slate-500">{{ weekday }}</UiTypo>
     </div>

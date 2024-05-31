@@ -2,7 +2,9 @@
   <button
     :disabled="disabledState"
     :type="type"
+    class="select-none transition active:scale-[.98]"
     :class="[$style.base, color, outline, sizeStyle, rounded ? 'rounded-full' : 'rounded-lg', block ? 'w-full' : '']"
+    ontouchstart
     @click="$emit('click')"
   >
     <div v-if="$slots['left-icon'] && !loading" class="h-5 w-5" :class="$slots.default && 'mr-1.5'">
@@ -81,13 +83,13 @@ const sizeStyle = computed<string>(() => {
 const color = computed<string>(() => {
   switch (props.variant) {
     case 'primary':
-      return 'bg-blue-500 hover:bg-blue-600 text-white';
+      return 'bg-blue-500 active:bg-blue-600 text-white';
     case 'soft':
-      return 'bg-blue-100 hover:bg-blue-200/75 text-blue-700';
+      return 'bg-blue-100 active:bg-blue-200/75 text-blue-700';
     case 'transparent':
-      return 'bg-transparent hover:bg-blue-50 text-blue-600';
+      return 'bg-transparent active:bg-blue-50 text-blue-600';
     case 'secondary':
-      return 'bg-white text-slate-700 ring-inset ring-1 ring-gray-300 ring-offset-0 hover:bg-slate-50 shadow-sm';
+      return 'bg-white text-slate-700 ring-inset ring-1 ring-gray-300 ring-offset-0 active:bg-slate-50 shadow-sm';
     default:
       return '';
   }

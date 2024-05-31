@@ -1,12 +1,13 @@
 <template>
   <UiModal v-model="value" title="Выберите счет">
     <UiSuspense :data="cards">
-      <div v-if="cards.data" class="-mx-2 flex flex-col">
+      <div v-if="cards.data" class="-mx-2 flex select-none flex-col">
         <button
           v-for="card in cards.data"
           :key="card.id"
           type="button"
-          class="flex rounded-md p-2 text-left active:bg-slate-100"
+          class="flex rounded-md p-2 text-left active:scale-[.98] active:bg-gray-100"
+          ontouchstart
           @click="selectCard(card.id)"
         >
           <ThumbnailCard :card="card" />

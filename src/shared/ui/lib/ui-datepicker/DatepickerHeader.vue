@@ -1,12 +1,12 @@
 <template>
-  <div class="mb-2 flex w-full px-2.5">
-    <button type="button" class="h-8 w-8 rounded-xl hover:bg-slate-200" @click="changeMonth('prev')">
+  <div class="mb-2 flex w-full select-none px-2.5">
+    <button ontouchstart type="button" class="h-8 w-8 rounded-xl active:bg-slate-200" @click="changeMonth('prev')">
       <UiIcon icon-name="faAngleLeft" />
     </button>
     <button type="button" class="flex h-8 flex-grow items-center justify-center">
       <UiTypo class="font-semibold">{{ visibleMonthText }} {{ visibleYearText }}</UiTypo>
     </button>
-    <button type="button" class="h-8 w-8 rounded-xl hover:bg-slate-200" @click="changeMonth('next')">
+    <button ontouchstart type="button" class="h-8 w-8 rounded-xl active:bg-slate-200" @click="changeMonth('next')">
       <UiIcon icon-name="faAngleRight" />
     </button>
   </div>
