@@ -6,7 +6,7 @@
           v-for="category in categories.data"
           :key="category.id"
           type="button"
-          class="flex rounded-md p-2 text-left active:scale-[.98] active:bg-gray-100"
+          class="flex rounded-md p-2 text-left transition active:scale-[.98] active:bg-gray-100"
           ontouchstart
           @click="selectCategory(category.id)"
         >

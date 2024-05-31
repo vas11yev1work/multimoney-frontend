@@ -1,5 +1,5 @@
 <template>
-  <button class="w-full rounded-xl bg-gray-200 p-2" @click="showModal = true">
+  <button class="w-full rounded-xl bg-gray-200 p-2 transition active:scale-95" ontouchstart @click="showModal = true">
     <UiIcon size="lg" :icon-name="icon" class="text-blue-500" />
     <UiTypo class="mt-1 font-semibold" level="5">{{ title }}</UiTypo>
   </button>

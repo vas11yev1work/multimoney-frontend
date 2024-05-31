@@ -37,20 +37,20 @@
           class="font-semibold text-slate-400"
         />
       </div>
-      <div v-else-if="isTransferTransaction" class="flex flex-col items-end">
+      <div v-else-if="transfer" class="flex flex-col items-end">
         <div class="mb-1 flex">
           <UiTypo :class="[moneyColor, 'font-bold leading-5']">-</UiTypo>
           <UiMoney
-            :value="transaction.currencyAmount.amount"
-            :currency="transaction.currencyAmount.currency"
+            :value="transfer.currencyAmount.amount"
+            :currency="transfer.currencyAmount.currency"
             :class="[moneyColor, 'font-bold leading-5']"
           />
         </div>
         <div class="flex">
           <UiTypo :class="[moneyColor, 'font-bold leading-5']">+</UiTypo>
           <UiMoney
-            :value="transaction.toCurrencyAmount.amount"
-            :currency="transaction.toCurrencyAmount.currency"
+            :value="transfer.toCurrencyAmount.amount"
+            :currency="transfer.toCurrencyAmount.currency"
             :class="[moneyColor, 'font-bold leading-5']"
           />
         </div>
@@ -77,7 +77,16 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { Card, ExpenseCategory, IncomeCategory, isExpense, isIncome, isTransfer, Transaction } from '@/shared/api';
+import {
+  Card,
+  ExpenseCategory,
+  IncomeCategory,
+  isExpense,
+  isIncome,
+  isTransfer,
+  Transaction,
+  TransactionTransfer,
+} from '@/shared/api';
 import { UiIcon, UiMessage, UiMoney, UiSkeleton, UiTypo } from '@/shared/ui';
 
 const props = withDefaults(
@@ -110,6 +119,11 @@ const isExpenseTransaction = computed(() => {
 const isTransferTransaction = computed(() => {
   if (!props.transaction) return false;
   return isTransfer(props.transaction);
+});
+
+const transfer = computed<TransactionTransfer | undefined>(() => {
+  if (!props.transaction || !isTransfer(props.transaction)) return undefined;
+  return props.transaction as TransactionTransfer;
 });
 
 const moneyColor = computed(() => {
